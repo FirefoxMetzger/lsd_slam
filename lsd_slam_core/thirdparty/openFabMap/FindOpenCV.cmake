@@ -65,6 +65,7 @@ IF(WIN32)
 
 ELSE(WIN32) # Linux
 	FIND_PATH( OPENCV2_INCLUDE_PATH opencv.hpp
+	/opt/ros/kinetic/include/opencv-3.2.0-dev/opencv2
 	# installation selected by user
 	$ENV{OPENCV_HOME}/include
 	# system placed in /usr/local/include
