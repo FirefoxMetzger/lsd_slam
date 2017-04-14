@@ -24,6 +24,10 @@
 #include "settings.h"
 #include "PointCloudViewer.h"
 
+#include <iostream>
+#include <iterator>
+#include "boost/program_options.hpp"
+
 #include <dynamic_reconfigure/server.h>
 #include "lsd_slam_viewer/LSDSLAMViewerParamsConfig.h"
 #include <qapplication.h>
@@ -152,6 +156,22 @@ void rosFileLoop( int argc, char** argv )
 int main( int argc, char** argv )
 {
 
+	boost::program_options::options_description desc("Allowed options");	
+	desc.add_options()
+		("help", "produce help message")
+		("playBag", "If set play a bag file instead of launching a thread")
+	;
+
+	boost::program_options::variables_map vm;
+	boost::program_options::store(
+			boost::program_options::parse_command_line(argc,argv,desc), vm);
+	boost::program_options::notify(vm);
+
+	if (vm.count("help"))
+	{
+		std::cout << desc << std::endl;
+		return 0;
+	}
 
 	printf("Started QApplication thread\n");
 	// Read command lines arguments.
@@ -173,7 +193,7 @@ int main( int argc, char** argv )
 
 	boost::thread rosThread;
 
-	if(argc > 1)
+	if(vm.count("playBag"))
 	{
 		rosThread = boost::thread(rosFileLoop, argc, argv);
 	}
