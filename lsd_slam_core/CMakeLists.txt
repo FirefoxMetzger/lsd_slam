@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8.7)
 project(lsd_slam_core)
 include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS on)
+
 # Set the build type.  Options are:
 #  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
 #  Debug          : w/ debug symbols, w/o optimization
@@ -22,10 +24,10 @@ find_package(X11 REQUIRED)
 
 # FabMap
 # uncomment this part to enable fabmap
-#add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/openFabMap)
-#include_directories(${PROJECT_SOURCE_DIR}/thirdparty/openFabMap/include)
-#add_definitions("-DHAVE_FABMAP")
-#set(FABMAP_LIB openFABMAP )
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/openFabMap)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/openFabMap/include)
+add_definitions("-DHAVE_FABMAP")
+set(FABMAP_LIB openFABMAP )
 
 # Dynamic Reconfigure Services
 rosbuild_find_ros_package(dynamic_reconfigure)
