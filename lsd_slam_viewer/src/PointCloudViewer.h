@@ -132,10 +132,10 @@ public:
 		int showCurrentCam_i = showCurrentCam;
 		int isFix_i = isFix;
 
-		float x,y,z;
+		qreal x,y,z;
 		frame.getPosition(x,y,z);
 
-    	snprintf(buf, 1000, "Animation: %d at %lf (dur %lf) S: %f %f %d %d %d %d %d Frame: %lf %lf %lf %lf %f %f %f %d",
+    	snprintf(buf, 1000, "Animation: %d at %lf (dur %lf) S: %f %f %d %d %d %d %d Frame: %lf %lf %lf %lf %d %d %d %d",
 				isSettings_i, time, duration,
 				scaledTH, absTH, showLoopClosures_i, showKeyframes_i, showCurrentCam_i, sparsity, neighb,
 				frame.orientation()[0],frame.orientation()[1],frame.orientation()[2],frame.orientation()[3],
