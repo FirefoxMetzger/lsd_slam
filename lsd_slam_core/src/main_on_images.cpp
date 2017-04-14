@@ -25,6 +25,7 @@
 #include "util/globalFuncs.h"
 #include "SlamSystem.h"
 
+#include <iostream>
 #include <sstream>
 #include <fstream>
 #include <dirent.h>
@@ -152,7 +153,7 @@ int main( int argc, char** argv )
 	if(undistorter == 0)
 	{
 		printf("need camera calibration file! (set using _calib:=FILE)\n");
-		exit(0);
+		return 1;
 	}
 
 	int w = undistorter->getOutputWidth();
@@ -185,7 +186,7 @@ int main( int argc, char** argv )
 	if(!ros::param::get("~files", source))
 	{
 		printf("need source files! (set using _files:=FOLDER)\n");
-		exit(0);
+		return 0;
 	}
 	ros::param::del("~files");
 
@@ -269,7 +270,6 @@ int main( int argc, char** argv )
 
 
 	system->finalize();
-
 
 
 	delete system;
