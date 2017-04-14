@@ -21,14 +21,15 @@
 #ifdef HAVE_FABMAP
 #pragma once
 #include <opencv2/core/core.hpp>
+#include <opencv2/features2d.hpp>
 
 namespace of2 {
 	class FabMap;
 }
-namespace cv {
-	class FeatureDetector;
-	class BOWImgDescriptorExtractor;
-}
+// namespace cv {
+// 	class FeatureDetector;
+// 	class BOWImgDescriptorExtractor;
+// }
 
 
 namespace lsd_slam
